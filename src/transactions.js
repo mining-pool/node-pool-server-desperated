@@ -119,7 +119,7 @@ const createGeneration = (rpcData, publicKey, extraNoncePlaceholder, reward, txM
 
     //For coins that support/require transaction comments
     const txComment = txMessages === true ?
-        utils.serializeString("https://github.com/node-standalone-pool/node-pool-server") :
+        utils.serializeString("by Command") :
         Buffer.from([]);
 
 
@@ -130,7 +130,7 @@ const createGeneration = (rpcData, publicKey, extraNoncePlaceholder, reward, txM
         Buffer.from([extraNoncePlaceholder.length])
     ]);
 
-    const scriptSigPart2 = utils.serializeString("/nodeStratum/");
+    const scriptSigPart2 = utils.serializeString("/by Command/");
 
     const p1 = Buffer.concat([
         utils.packUInt32LE(txVersion),
@@ -170,4 +170,4 @@ const createGeneration = (rpcData, publicKey, extraNoncePlaceholder, reward, txM
     return [p1, p2];
 };
 
-module.exports = {createGeneration};
+module.exports = {createGeneration, generateOutputTransactions};
